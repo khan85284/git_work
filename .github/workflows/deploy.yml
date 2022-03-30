@@ -22,8 +22,8 @@ jobs:
         id: changes
         # Set outputs using the command.
         run: |
-           F=git log -n 1 origin/test --pretty=format:"%H"
-           M=git log -n 1 origin/main --pretty=format:"%H"
+           F=$(git log -n 1 origin/test --pretty=format:"%H")
+           M=$(git log -n 1 origin/main --pretty=format:"%H")
            echo "$F"
         #echo "::set-output name=sha_short::$(git rev-parse --short ${{ github.event.pull_request.head.sha }})"
         #URL="https://git.build.inter.ikea.com/${{github.repository}}/pull/${{ github.event.pull_request.number }}.patch"
