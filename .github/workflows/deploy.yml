@@ -21,9 +21,11 @@ jobs:
       - name: Get changed files
         id: changes
         # Set outputs using the command.
+        env:
+          fe: git log -n 1 origin/test --pretty=format:"%H"
         run: |
            
-           echo "::set-output name=Fe::$(git log -n 1 origin/test --pretty=format:"%H")"
+           echo "${{fe}}"
  
            echo "$Fe"
         #echo "::set-output name=sha_short::$(git rev-parse --short ${{ github.event.pull_request.head.sha }})"
