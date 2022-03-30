@@ -25,7 +25,7 @@ jobs:
           fe: git log -n 1 origin/test --pretty=format:"%H"
         run: |
            
-           echo "${{fe}}"
+           echo "$fe"
  
            echo "$Fe"
         #echo "::set-output name=sha_short::$(git rev-parse --short ${{ github.event.pull_request.head.sha }})"
