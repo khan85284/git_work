@@ -24,7 +24,7 @@ jobs:
         env:
           fe: git log -n 1 origin/test --pretty=format:"%H"
         run: | 
-           git diff --name-only $(git log -n 1 origin/main --pretty=format:"%H")...$(git log -n 1 origin/test --pretty=format:"%H")
+           echo "::set-output name=all::$(git log -n 1 origin/main --pretty=format:"%H")"
         #echo "::set-output name=sha_short::$(git rev-parse --short ${{ github.event.pull_request.head.sha }})"
         #URL="https://git.build.inter.ikea.com/${{github.repository}}/pull/${{ github.event.pull_request.number }}.patch"
         #echo "$(curl -s -L $URL | git apply --stat -)
