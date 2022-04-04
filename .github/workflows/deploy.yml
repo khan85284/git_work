@@ -23,9 +23,11 @@ jobs:
         # Set outputs using the command.
         env:
           fe: git log -n 1 origin/test --pretty=format:"%H"
-        run: | 
-          Feature=$(git log -n 1 origin/main --pretty=format:"%H")
-          echo "${{Feature}}"
+      - name: Feature
+        run: echo '::set-output name=feature::$(git log -n 1 origin/test --pretty=format:"%H")'
+        id: feature-id
+      - name: Get color
+        run: echo "The selected color is ${{ steps.feature-id.outputs.feature }}"
         #echo "::set-output name=sha_short::$(git rev-parse --short ${{ github.event.pull_request.head.sha }})"
         #URL="https://git.build.inter.ikea.com/${{github.repository}}/pull/${{ github.event.pull_request.number }}.patch"
         #echo "$(curl -s -L $URL | git apply --stat -)
