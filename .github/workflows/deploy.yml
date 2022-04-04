@@ -8,39 +8,13 @@ on:
 jobs:
   changedfiles:
     runs-on: Windows
-    # Map a step output to a job output
-    outputs:
-      all: ${{ steps.changes.outputs.all}}
-      ts: ${{ steps.changes.outputs.ts }}
-      feature: ${{ steps.feature-id.outputs.feature }}
     steps:
-        # Make sure we have some code to diff.
-      - name: Checkout repositoryy
-        uses: actions/checkout@v2
-        with: 
-          fetch-depth: 0
-      - name: Get changed files
-        id: changes
-        # Set outputs using the command.
-        env:
-          fe: git log -n 1 origin/test --pretty=format:"%H"
-      - name: Feature
-        run: echo '::set-output name=feature::$(git log -n 1 origin/test --pretty=format:"%H")'
-        id: feature-id
+      - name: Set selected color
+        run: echo '::set-output name=SELECTED_COLOR::green'
+        id: random-color-generator
       - name: Get color
-        run: echo "The selected color is ${{ steps.feature-id.outputs.feature }}"
-        #echo "::set-output name=sha_short::$(git rev-parse --short ${{ github.event.pull_request.head.sha }})"
-        #URL="https://git.build.inter.ikea.com/${{github.repository}}/pull/${{ github.event.pull_request.number }}.patch"
-        #echo "$(curl -s -L $URL | git apply --stat -)
-        #echo $FILES
-        #echo "${{ github.head_ref }}.${{ github.sha }}"
-        #echo "[ $default-branch ]"
-          
-        #echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
-        #echo "::set-output name=ts::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .*$ | xargs)"
-        #echo "::set-output name=ts::git diff-tree -r --no-commit-id --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }}"
-        #git diff --name-only $default-branch...${{ github.head_ref }}
-        #echo "${git_branch}"
+        run: echo "The selected color is ${{ steps.random-color-generator.outputs.SELECTED_COLOR }}"
+   
         
       
 
