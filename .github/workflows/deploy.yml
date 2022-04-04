@@ -17,7 +17,9 @@ jobs:
           echo '::set-output name=SELECTED_COLOR1::$(git log -n 1 origin/test --pretty=format:"%H")'
         id: random-color-generator
       - name: Get color
-        run: echo "The selected color is ${{ steps.random-color-generator.outputs.SELECTED_COLOR }} and ${{ steps.random-color-generator.outputs.SELECTED_COLOR1 }}"
+        run: |
+          git diff --name-only ${{ steps.random-color-generator.outputs.SELECTED_COLOR }}...${{ steps.random-color-generator.outputs.SELECTED_COLOR1 }}
+          echo "The selected color is ${{ steps.random-color-generator.outputs.SELECTED_COLOR }} and ${{ steps.random-color-generator.outputs.SELECTED_COLOR1 }}"
    
         
       
