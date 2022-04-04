@@ -18,7 +18,7 @@ jobs:
         id: random-color-generator
       - name: Get color
         run: |
-          $(git diff --name-only ${{ steps.random-color-generator.outputs.SELECTED_COLOR }}...${{ steps.random-color-generator.outputs.SELECTED_COLOR1 }})
+          $(git diff [--name-only] ${{ steps.random-color-generator.outputs.SELECTED_COLOR }}...${{ steps.random-color-generator.outputs.SELECTED_COLOR1 }} -- [C:\Users\MohammadAamirKhan\Pictures\actions-runner\_work\git_work\git_work])
           echo "The selected color is ${{ steps.random-color-generator.outputs.SELECTED_COLOR }} and ${{ steps.random-color-generator.outputs.SELECTED_COLOR1 }}"
    
         
