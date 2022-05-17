@@ -11,23 +11,13 @@ jobs:
     steps:
       - name: git commit
         run: git log -n 1 origin/test --pretty=format:"%H" 
-      - name: Set commit ID's
+      - name: Set selected color
         run: |
-          echo '::set-output name=SELECTED_COMMIT::$(git log -n 1 origin/main --pretty=format:"%H")'
-          echo '::set-output name=SELECTED_COMMIT1::$(git log -n 1 origin/test --pretty=format:"%H")'
-        id: random-commit-generator
-      - name: Get Commit ID's
+          echo '::set-output name=SELECTED_COLOR::$(git log -n 1 origin/main --pretty=format:"%H")'
+          echo '::set-output name=SELECTED_COLOR1::$(git log -n 1 origin/test --pretty=format:"%H")'
+        id: random-color-generator
+      - name: Get color
         run: |
-          $(git diff --name-only ${{ steps.random-commit-generator.outputs.SELECTED_COMMIT }}...${{ steps.random-commit-generator.outputs.SELECTED_COMMIT1 }} -- C:\Users\MohammadAamirKhan\Pictures\actions-runner\_work\git_work\git_work)
-          echo "The selected color is ${{ steps.random-commit-generator.outputs.SELECTED_COMMIT }} and ${{ steps.random-commit-generator.outputs.SELECTED_COMMIT1 }}"
+          $(git diff --name-only ${{ steps.random-color-generator.outputs.SELECTED_COLOR }}...${{ steps.random-color-generator.outputs.SELECTED_COLOR1 }} -- C:\Users\MohammadAamirKhan\Pictures\actions-runner\_work\git_work\git_work)
+          echo "The selected color is ${{ steps.random-color-generator.outputs.SELECTED_COLOR }} and ${{ steps.random-color-generator.outputs.SELECTED_COLOR1 }}"
    
-        
-      
-
-        
-        
-          
-    
-      
-    
-          
