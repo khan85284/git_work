@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: git commit
-        run: git log -n 1 origin/test --pretty=format:"%H" 
+        run: git log -n 1 origin/test  
       - name: Set commit ID's
         run: |
           echo '::set-output name=SELECTED_COMMIT::$(git log -n 1 origin/main --pretty=format:"%H")'
