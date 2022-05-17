@@ -9,8 +9,6 @@ jobs:
   changedfiles:
     runs-on: Windows
     steps:
-      - name: git commit
-        run: git log -n 1 origin/test --pretty=format:"%H" 
       - name: Set selected color
         run: |
           echo '::set-output name=SELECTED_COLOR::$(git log -n 1 origin/main --pretty=format:"%H")'
